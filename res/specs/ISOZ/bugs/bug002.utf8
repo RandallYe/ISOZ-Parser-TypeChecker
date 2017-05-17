@@ -1,0 +1,30 @@
+ section prelude 
+  generic (ℙ _) 
+ [𝔸] 
+╷ℕ : ℙ 𝔸 
+╷number_literal_0 : ℕ
+number_literal_1 : ℕ 
+  function 30 leftassoc (_ + _) 
+╷_ + _ : ℙ ((𝔸 × 𝔸) × 𝔸) | ∀ m, n : ℕ ⦁ ∃↘1↖ p : (_ + _) ⦁ p.1 = (m, n)
+∀ m, n : ℕ ⦁ m + n ∈ ℕ
+∀ m, n : ℕ | m + 1 = n + 1 ⦁ m = n
+∀ n : ℕ ⦁ ¬ n + 1 = 0
+∀ w : ℙ ℕ | 0 ∈ w ∧ (∀ y : w ⦁ y + 1 ∈ w) ⦁ w = ℕ
+∀ m : ℕ ⦁ m + 0 = m
+∀ m, n : ℕ ⦁ m + (n + 1) = (m + n) + 1 
+ section set_toolkit 
+  generic 5 rightassoc (_ ↔ _) 
+ X ↔ Y == ℙ (X × Y) 
+  generic 5 rightassoc (_ → _) 
+ X → Y == { f : X ↔ Y | ∀ x : X ⦁ ∃↘1↖ y : Y ⦁ (x, y) ∈ f } 
+  relation (_ ∉ _) 
+╷═[X, Y]dom  : (X ↔ Y) → ℙ X | ∀ r : X ↔ Y ⦁ dom r = { p : r ⦁ p.1 } 
+╷═[X]_ ∉ _ : X ↔ ℙ X | ∀ x : X; a : ℙ X ⦁ x ∉ a ⇔ ¬ x ∈ a 
+ ∅[X] == { x : X | false } 
+  function 30 leftassoc (_ ∪ _) 
+╷═[X]_ ∪ _ : ℙ X × ℙ X → ℙ X | ∀ a, b : ℙ X ⦁ a ∪ b = { x : X | x ∈ a ∨ x ∈ b } 
+ section relation_toolkit parents set_toolkit 
+  function 65 rightassoc (_ ⩤ _) 
+╷═[X, Y]_ ⩤ _ : ℙ X × (X ↔ Y) → (X ↔ Y) | ∀ a : ℙ X; r : X ↔ Y ⦁ a ⩤ r = { p : r | p.1 ∉ a } 
+  function 50 leftassoc (_ ⊕ _) 
+╷═[X, Y]_ ⊕ _ : (X ↔ Y) × (X ↔ Y) → (X ↔ Y) | ∀ r, s : X ↔ Y ⦁ r ⊕ s = ((dom s) ⩤ r) ∪ s 

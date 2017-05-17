@@ -1,0 +1,4 @@
+-- Clause 13.2.3.3
+  section S   
+  ∅[X] == { x : X | false } 
+ empty == ∅ 

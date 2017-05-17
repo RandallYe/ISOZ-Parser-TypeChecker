@@ -1,0 +1,23 @@
+\begin{zsection}
+\SECTION theta 
+\end{zsection}
+
+\begin{schema}{Sch}
+x: \nat
+\end{schema}
+
+\begin{schema}{THETA\_Sch}
+    \Delta Sch 
+\where
+    \theta Sch~' = \theta Sch
+\end{schema}
+
+\begin{zed}
+  GenSch[X] == [x: \power X]
+\end{zed}
+
+\begin{schema}{THETA\_Sch1}[X]
+    \Delta GenSch[X] 
+\where
+    \theta GenSch[X]~' = \theta GenSch[X]
+\end{schema}

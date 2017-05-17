@@ -1,0 +1,5 @@
+-- D.8
+  section D8   
+-- FT1 ::= c | d 《 {1,2} 》  
+ exp ::= Node 《 {1,2} 》| Cond 《 pred × exp × exp 》& pred ::= Compare 《 exp × exp 》  
+-- FT1 ::= c & FT2 ::= c | D1 《 123 》  

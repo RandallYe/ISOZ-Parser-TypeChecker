@@ -1,0 +1,6 @@
+─ relation (_ postp)  
+─ relation (_ elp _ erp)  
+─ relation (_ elp _ es _ erp)  
+─ relation (_ elp _ es1 _ es2 _ erp)  
+─ relation (_ elp ,, ss ,, srp)  
+─ relation (_ elp ,, ss1 ,, ss2 ,, srp)  

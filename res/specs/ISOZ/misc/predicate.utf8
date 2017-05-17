@@ -1,0 +1,18 @@
+┍⊢? true   
+┍⊢? false   
+┍⊢? ( true )   
+┍⊢? ( true   false )   
+┍⊢? ( true ; false )   
+┍⊢? (∀ x : T ⦁ true)   
+┍⊢? (∃ x : T ⦁ true)   
+┍⊢? (∃↘1↖ x : T ⦁ true)   
+┍⊢? ( true ⇔ false )   
+┍⊢? ( true ⇔ false ⇔ p = q)   
+┍⊢? ( true ⇒ false )   
+┍⊢? ( true ∧ false )   
+┍⊢? ( true ∨ false )   
+┍⊢? (∀ x : T ⦁ true)   
+┍⊢? (∀ x,y : T ⦁ x = y)   
+┍⊢? (1 ∈ {0,1})   
+--┍⊢? (∃ x,y : T ⦁ 1 ∈ {0,1})   
+--┍⊢? (∃ x : T; y : ℙ ⦁ x ∈ y)   

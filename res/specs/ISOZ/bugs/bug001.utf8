@@ -1,0 +1,55 @@
+-- This is a specification to test the problem with \mapsto
+--  1. Without expression transformation via precedence, 
+--      X × Y → X × Y  will be regarded as ((X × Y → X) × Y)
+--  2. With expression transformation via precedence in SynTransformExpr.hs
+--      X × Y → X × Y  will be regarded as ((X × Y) → (X × Y))
+ section prelude 
+  generic 5 rightassoc (_ ↔ _) 
+ X ↔ Y == ℙ (X × Y) 
+  generic 5 rightassoc (_ → _) 
+ X → Y == { f : X ↔ Y | ∀ x : X ⦁ ∃↘1↖ y : Y ⦁ (x, y) ∈ f } 
+  function 10 leftassoc (_ ↦ _) 
+-- the precedence and associativity are not considered correctly
+-- the precedence of × is 8 (p36 of Clause 8) while → is 5, so × binds more tightly than → since the higher number has tighter binding.
+-- ╷═[X, Y]_ ↦ _ : X × Y → X × Y | ∀ x : X; y : Y ⦁ x ↦ y = (x, y) 
+-- (ProdExpr [PosAnn (Pn 414 9 17)] [
+--        FuncApplExpr [PosAnn (Pn 414 9 17)] (InfixApp [PosAnn (Pn 414 9 17)] (InInfixApp [PosAnn (Pn 414 9 17)] 
+--                (ProdExpr [PosAnn (Pn 414 9 17)] 
+--                      [RefExpr [PosAnn (Pn 414 9 17)] (RName [PosAnn (Pn 414 9 17)] "X"),
+--                       RefExpr [PosAnn (Pn 418 9 21)] (RName [PosAnn (Pn 418 9 21)] "Y")]) 
+--                "\8594" 
+--                (RefExpr [PosAnn (Pn 422 9 25)] (RName [PosAnn (Pn 422 9 25)] "X")))),
+--        RefExpr [PosAnn (Pn 426 9 29)] (RName [PosAnn (Pn 426 9 29)] "Y")])
+╷═[X, Y]_ ↦ _ : (X × Y) → (X × Y) | ∀ x : X; y : Y ⦁ x ↦ y = (x, y) 
+-- (FuncApplExpr [PosAnn (Pn 480 10 18)] (InfixApp [PosAnn (Pn 480 10 18)] (InInfixApp [PosAnn (Pn 480 10 18)] 
+--      (ProdExpr [PosAnn (Pn 480 10 18)] 
+--          [RefExpr [PosAnn (Pn 480 10 18)] (RName [PosAnn (Pn 480 10 18)] "X"),
+--           RefExpr [PosAnn (Pn 484 10 22)] (RName [PosAnn (Pn 484 10 22)] "Y")]) 
+--      "\8594" 
+--      (ProdExpr [PosAnn (Pn 490 10 28)] 
+--          [RefExpr [PosAnn (Pn 490 10 28)] (RName [PosAnn (Pn 490 10 28)] "X"),
+--           RefExpr [PosAnn (Pn 494 10 32)] (RName [PosAnn (Pn 494 10 32)] "Y")]))))
+-- Procedures:
+--      ((X x Y) -> X) x Y    => (X x Y) -> (X x Y)
+--  1. traverse ((X x Y) -> X) 
+--     since prec(x) > prec(->), so no change, return ((X x Y) -> X) 
+--  2. since prec(->) < prec(x), so
+--     ((X x Y) -> X) x Y    =>  ((X x Y) -> (X x Y))
+--  3. traverse the second (X x Y) to get (X x Y)
+--
+-- Example 2: 
+--      ((X x Y) -> X) x ((X x Y) -> Y)    
+--               ++    +
+--   => [prec(->) < prec(x)]
+--      (X x Y) -> (X x ((X x Y) -> Y))
+--                    +          ++
+--   => [prec(->) < prec(x)]
+--      (X x Y) -> ((X x (X x Y)) -> Y)
+--                     +    +
+--   => [x is ]
+--      (X x Y) -> ((X x (X x Y)) -> Y)
+--              ++                ++
+--   => [-> is leftassoc]
+--      (((X x Y) -> (X x (X x Y))) -> Y)
+--
+-- Example 3: 

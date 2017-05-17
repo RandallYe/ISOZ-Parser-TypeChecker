@@ -1,0 +1,114 @@
+\documentclass{article}
+\usepackage{fuzz}
+
+\begin{document}
+
+\begin{zsection}
+    \SECTION ESELSpec\ \parents\ standard\_toolkit
+\end{zsection}
+
+\begin{axdef}
+	MAX\_ESEL : \nat \\
+ MAX\_PID : \nat 
+\where
+ MAX\_ESEL = 3 \\
+ MAX\_PID = 2
+\end{axdef}
+
+\begin{zed}
+	ESID ::= ES \ldata 1 \upto MAX\_ESEL \rdata
+\end{zed}
+
+\begin{zed}
+	PID ::= PD \ldata 1 \upto MAX\_PID \rdata
+\end{zed}
+
+\begin{zed}
+	Price == \nat
+\end{zed}
+
+\begin{zed}
+	UStatus ::= uok | ufail
+\end{zed}
+
+\begin{zed}
+	FStatus ::= fail \ldata ESID \rdata | NA
+\end{zed}
+
+\begin{zed}
+	Controller\_State == [~  Controller\_pumap : ESID \pfun PID ; Controller\_ppmap : PID \pfun Price ; Controller\_response : PID \pfun ( \power FStatus )  ~]
+\end{zed}
+
+\begin{zed}
+	State == Controller\_State
+\end{zed}
+
+\begin{zed}
+	Init == [~  State~' | Controller\_pumap' =~\emptyset \land Controller\_ppmap' =~\emptyset \land Controller\_response' =~\emptyset  ~]
+\end{zed}
+
+\begin{zed}
+	Controller\_Init == [~  Controller\_State~' ; Controller\_pumap : ESID \pfun PID ; Controller\_response : PID \pfun ( \power FStatus ) ; Controller\_ppmap : PID \pfun Price | Controller\_pumap' =~\emptyset \land Controller\_ppmap' =~\emptyset \land Controller\_response' =~\emptyset  ~]
+\end{zed}
+
+\begin{zed}
+	Controller\_UpdateMap == [~  \Delta Controller\_State ; map? : ESID \pfun PID | Controller\_pumap' = Controller\_pumap \oplus map? \land Controller\_ppmap' = Controller\_ppmap \land Controller\_response' = Controller\_response  ~]
+\end{zed}
+
+\begin{zed}
+	Controller\_UpdateAllMap == [~  \Delta Controller\_State ; map? : ESID \pfun PID | Controller\_pumap' = map? \land Controller\_ppmap' = Controller\_ppmap \land Controller\_response' = Controller\_response  ~]
+\end{zed}
+
+\begin{zed}
+	Controller\_NewPrice == [~  \Delta Controller\_State ; price? : PID \pfun Price | Controller\_ppmap' = Controller\_ppmap \oplus price? \land Controller\_pumap' = Controller\_pumap \land Controller\_response' = Controller\_response  ~]
+\end{zed}
+
+\begin{zed}
+	Controller\_AllNewPrice == [~  \Delta Controller\_State ; price? : PID \pfun Price | Controller\_ppmap' = price? \land Controller\_pumap' = Controller\_pumap \land Controller\_response' = Controller\_response  ~]
+\end{zed}
+
+\begin{zed}
+	Controller\_AddOneFailure == [~  \Delta Controller\_State ; pid? : PID ; fst? : FStatus | ( pid? \in \dom Controller\_response \implies Controller\_response' = Controller\_response \oplus \{ pid? \mapsto ( Controller\_response ( pid? ) \cup \{ fst? \} ) \} ) \land ( pid? \notin \dom Controller\_response \implies Controller\_response' = Controller\_response \cup \{ pid? \mapsto \{ fst? \} \} ) \land Controller\_ppmap' = Controller\_ppmap \land Controller\_pumap' = Controller\_pumap  ~]
+\end{zed}
+
+\begin{zed}
+	Controller\_OP\_response == [~  \Xi Controller\_State ; Controller\_response! : PID \pfun ( \power FStatus ) | Controller\_response! = Controller\_response  ~]
+\end{zed}
+
+\begin{zed}
+	Controller\_OP\_pumap == [~  \Xi Controller\_State ; Controller\_pumap! : ESID \pfun PID | Controller\_pumap! = Controller\_pumap  ~]
+\end{zed}
+
+\begin{zed}
+	Controller\_OP\_ppmap == [~  \Xi Controller\_State ; Controller\_ppmap! : PID \pfun Price | Controller\_ppmap! = Controller\_ppmap  ~]
+\end{zed}
+
+\begin{zed}
+	Controller\_Init\_fOp == [~  \Xi Controller\_State | \lnot \pre Controller\_Init  ~]
+\end{zed}
+
+\begin{zed}
+	Controller\_UpdateMap\_fOp == [~  \Xi Controller\_State ; map? : ESID \pfun PID | \lnot \pre Controller\_UpdateMap  ~]
+\end{zed}
+
+\begin{zed}
+	Controller\_UpdateAllMap\_fOp == [~  \Xi Controller\_State ; map? : ESID \pfun PID | \lnot \pre Controller\_UpdateAllMap  ~]
+\end{zed}
+
+\begin{zed}
+	Controller\_NewPrice\_fOp == [~  \Xi Controller\_State ; price? : PID \pfun Price | \lnot \pre Controller\_NewPrice  ~]
+\end{zed}
+
+\begin{zed}
+	Controller\_AllNewPrice\_fOp == [~  \Xi Controller\_State ; price? : PID \pfun Price | \lnot \pre Controller\_AllNewPrice  ~]
+\end{zed}
+
+\begin{zed}
+	Controller\_AssgnOp0 == [~  \Delta Controller\_State | Controller\_response' =~\emptyset \land Controller\_pumap' = Controller\_pumap \land Controller\_ppmap' = Controller\_ppmap  ~]
+\end{zed}
+
+\begin{zed}
+	Controller\_AddOneFailure\_fOp == [~  \Xi Controller\_State ; pid? : PID ; fst? : FStatus | \lnot \pre Controller\_AddOneFailure  ~]
+\end{zed}
+
+\end{document}

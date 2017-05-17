@@ -1,0 +1,7 @@
+─HDefName==123 
+─HDefName1==[x,y:T | true] 
+┌ SchDef x,y:123 | true  
+─GenHDefName[X,Y]==123 
+─GenHDefName1[X,Y]==[x,y:T] 
+╷S == HDefName ∧ GenHDefName   
+╷S == HDefName1 ∧ GenHDefName1[1,2]   

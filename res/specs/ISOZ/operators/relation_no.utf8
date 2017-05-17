@@ -1,0 +1,6 @@
+─ relation (lp _ erp)  
+─ relation (lp _ es _ erp)  
+─ relation (lp _ es1 _ es2 _ erp)  
+─ relation (lp ,, srp)  
+─ relation (lp ,, ss ,, srp)  
+─ relation (lp ,, ss1 ,, ss2 ,, srp)  

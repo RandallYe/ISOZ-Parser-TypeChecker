@@ -1,0 +1,8 @@
+─ relation (ℙ _)  
+─ relation (prep _)  
+─ relation (lp _ erep _)  
+─ relation (lp ,, srep _)  
+─ relation (lp _ es _ erep _)  
+─ relation (lp _ es1 _ es2 _ erep _)  
+─ relation (lp ,, ss ,, srep _)  
+─ relation (lp ,, ss1 ,, ss2 ,, srep _)  

@@ -1,0 +1,46 @@
+─section prelude 
+─ generic 5 rightassoc (_ o5r _) 
+─ generic 5 leftassoc (_ o5l _) 
+─ generic 6 rightassoc (_ o6r _) 
+─ generic 6 leftassoc (_ o6l _) 
+─ generic 9 rightassoc (_ o9r _) 
+─ generic 9 leftassoc (_ o9l _) 
+─ function (_ postop) 
+─ function (preop _) 
+-- 
+-- Test Association
+-- should be ("x" "o5r" ("y" "o5r" "z" ))
+─x == x o5r y o5r z   
+-- should be (("x" "o5l" "y" )  "o5l" "z" )
+─x == (x o5r y) o5r z   
+-- should be (("x" "o5l" "y" )  "o5l" "z" ) 
+─x == x o5l y o5l z   
+-- 
+-- Test Precedence
+-- "x" == (("x" "o6l" "y" )  "o5l" ("z" "o9r" "v" )  )
+─x == x o6l y o5l z o9r v   
+-- ((("x" "o6l" "y" )  "o5l" "z" )  "o5l" "v" )
+─x == x o6l y o5l z o5l v   
+-- (("x" "o6l" "y" )  "o5r" ("z" "o5r" "v" )  ) 
+─x == x o6l y o5r z o5r v   
+-- 
+-- the precedence of × is 8, and left assoc
+─x == x × y × z   
+─x == x × y o5l z × v   
+─x == x × y o9l z × v   
+─x == x × y o9l z o5l v   
+--
+-- prefix, postfix, and infix
+-- postfix > prefix > infix
+─x == preop x × y o9l z o5l v   
+─x == x × y o9l preop z o5l v   
+─x == preop z postop o5l v   
+─ generic 7 rightassoc (_ o7r1 _ o7r2 _) 
+─ generic 7 leftassoc (_ o7l1 _ o7l2 _) 
+─ generic 30 rightassoc (_ o30r1 _ o30r2 _) 
+─ generic 30 leftassoc (_ o30l1 _ o30l2 _) 
+─x == x o7r1 y o7r2 z   
+─x == x o5r x o7r1 y o7r2 z o9r v    
+-- 
+─ function (〈  ,,  〉) 
+─〈  ,,  〉[X] == λ s : seq X ⦁ s 

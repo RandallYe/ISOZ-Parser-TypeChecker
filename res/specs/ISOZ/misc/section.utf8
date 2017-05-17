@@ -1,0 +1,27 @@
+─ section SectName   
+─[Gset, GSet2] 
+╷S == 3  
+╷x,y:123  
+╷x,y:123; z:13 | false  
+┌ SchDef x,y:123 | true  
+╷═[X,Y]x,y:123  
+┌═[X,Y]SchDef x,y:123 | true  
+─HDefName==123 
+─GenHDefName[X,Y]==123 
+─FT1 ::= c   
+─FT1 ::= c | D1 《 123 》  
+─⊢? ( true )   
+─[X,Y]⊢? true   
+─channel x,y,z   
+─channel x,y,z:e   
+
+─channel x,y,z
+─channel x,y,z:e   
+
+─channel e   
+─channel [X]x,y,z:e   
+─channel [X,Y]x,y,z:e   
+─channelfrom e   
+─channelfrom e↘1↖    
+─channelfrom eʹ    
+─channelfrom e ʹ    

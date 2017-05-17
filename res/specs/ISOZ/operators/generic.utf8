@@ -1,0 +1,6 @@
+─ generic 5 rightassoc (_ ↔ _)  
+─ generic (ℙ  _)  
+--  function (F  _)  
+-- X ↔  Y == F ( X × Y)  
+─X ↔  Y == ℙ ( X × Y)  
+─x == A ↔  B   

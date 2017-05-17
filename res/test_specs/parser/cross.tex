@@ -1,0 +1,52 @@
+\begin{zsection}
+\SECTION cross \parents function\_toolkit
+\end{zsection}
+
+\begin{zed}
+[NAME, ID, DEPARTMENT]
+\end{zed}
+
+%%%Zinword \op9 op9 
+%%%Zinword \op5 op5 
+%\begin{zed}
+%% an operator which binds more tightly than cross
+%\generic 9 \leftassoc (\_ \op9 \_) 
+%\end{zed}
+%
+%\begin{gendef}[X]
+%\_ \op9 \_ : \power X \cross \power X \fun \power X
+%\end{gendef}
+%
+%\begin{zed}
+%\generic 5 \leftassoc (\_ \op5 \_) 
+%\end{zed}
+%
+%\begin{gendef}[X]
+%\_ \op5 \_ : \power X \cross \power X \fun \power X
+%\end{gendef}
+
+\begin{zed}
+EMPLOYEE == ID \cross NAME \cross DEPARTMENT \\
+\end{zed}
+\begin{zed}
+EMPLOYEE1 == (ID \cross NAME) \cross DEPARTMENT \\
+\end{zed}
+\begin{zed}
+EMPLOYEE2 == ID \cross (NAME \cross DEPARTMENT) \\
+\end{zed}
+\begin{zed}
+% the precedence of \cup is 30
+EMPLOYEE3 == ID \cross NAME \cup NAME \cross DEPARTMENT \\
+\end{zed}
+\begin{zed}
+% the precedence of \rel is 5
+EMPLOYEE4 == ID \cross NAME \rel NAME \cross DEPARTMENT \\
+\end{zed}
+\begin{zed}
+% the precedence of \cup is 30
+EMPLOYEE5 == ID \cross (NAME \cup NAME \cross DEPARTMENT) \\
+\end{zed}
+\begin{zed}
+% the precedence of \rel is 5
+EMPLOYEE6 == (ID \cross NAME \rel NAME) \cross DEPARTMENT \\
+\end{zed}

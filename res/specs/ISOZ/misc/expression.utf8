@@ -1,0 +1,47 @@
+─ section SectName   
+─HSchDef==[x,y:T | true] 
+┌ SchDef x,y:123 | true  
+─GenHDef[X,Y]==[x,y:T] 
+─x == 1   
+─x == ∀ x == T | true ⦁ HSchDef   
+─x == ∀ x == T | true ⦁ ∀ y == T | true ⦁ HSchDef   
+─x == ∀ x == T | true ⦁ (∀ y == T | true ⦁ HSchDef)   
+─x == ∃ x : T | true ⦁ HSchDef   
+─x == ∃↘1↖ x : T | true ⦁ HSchDef   
+─x == λ x : T | true ⦁ x   
+─x == HSchDef ⇔ SchDef   
+─x == HSchDef ⇔ HSchDef ⇔ HSchDef   
+─x == HSchDef ⇒ SchDef   
+─x == HSchDef ∧ SchDef   
+─x == HSchDef ∨ GenHDef ∨ GenHDef    
+─x == ¬ HSchDef   
+─x == if true then 1 else 2   
+─x == HSchDef ⨟ SchDef   
+─x == x ⨠  HSchDef   
+─x == x ⧹ (x,y)   
+─x == x ⨡ HSchDef   
+─x == pre x   
+─x == x × y × z   
+─x == ℙ x    
+─x == y x    
+─x == HSchDef ? ' '    
+─x == y.x     
+─x == y.1     
+─x == θ HSchDef ' '     
+─x == y     
+─x == y[1,2]     
+─x == {}     
+─x == {x : T | true ⦁ x}     
+─x == { x : T | true }   
+─x == [ x : T | true ]   
+─x == (y)   
+─x == {a,b}     
+─x == ⦉ x == y ⦊    
+─x == (⦉ x == y ⦊)    
+─x == ( x, y )   
+─x == λ x,y : T; z:T | true ⦁ x   
+─x == μ x,y : T; z:T | true ⦁ x   
+─x == (μ x,y : T; z:T | true)   
+─x == { x,y : T; z:T | true}   
+─x == { x == T; z:T | true}   
+─x == Z X Y   

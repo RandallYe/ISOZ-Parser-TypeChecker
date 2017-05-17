@@ -1,0 +1,4 @@
+-- D.6
+  section D6   
+  generic 5 rightassoc (_ ↔ _)  
+ X ↔ Y == ℙ(X × Y) 

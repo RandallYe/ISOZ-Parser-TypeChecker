@@ -1,0 +1,7 @@
+─ function 91 leftassoc (_ i _)  
+─ function 8 rightassoc (_ el _ ere _)  
+─ function 10 leftassoc (_ el _ es _ ere _)  
+─ function  1 leftassoc (_ el _ es1 _ es2 _ ere _)  
+─ function 9 rightassoc (_ el ,, ss ,, sre _)  
+─ function 9 rightassoc (_ el ,, ss1 ,, ss2 ,, sre _)  
+─ function 9 rightassoc (_ + _)  

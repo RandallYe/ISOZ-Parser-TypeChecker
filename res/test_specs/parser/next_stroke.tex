@@ -1,0 +1,23 @@
+\begin{zsection}
+  \SECTION birthdaybook \parents standard\_toolkit
+\end{zsection}
+
+\begin{zed}
+   [NAME, ~ DATE] 
+\end{zed}
+
+The $BirthdayBook$ schema defines the \emph{state space} of 
+the birthday book system. 
+
+\begin{schema}{BirthdayBook}
+    known: \power NAME \\
+    birthday: NAME \pfun DATE
+\where
+    known=\dom birthday
+\end{schema}
+
+\begin{schema}{InitBirthdayBook}
+    BirthdayBook~'
+\where
+    known' = \{ \}
+\end{schema}

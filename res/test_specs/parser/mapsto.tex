@@ -1,0 +1,18 @@
+\begin{zsection}
+\SECTION mapsto \parents standard\_toolkit 
+\end{zsection}
+
+\begin{schema}{Sch}
+f: \nat \pfun \nat\\
+g: \nat \pfun \nat
+\end{schema}
+
+\begin{schema}{mapsto\_Sch}
+    \Delta Sch \\ 
+    i? : \nat
+\where
+    f = \{ 1 \mapsto 1 \} \\
+    f' = \{ 1 \mapsto 1 + 1 \} \\
+    f' = \{ 1 \mapsto g(i?) + 1 \} \\
+    f' = f \oplus \{ 1 \mapsto g(i?) + 1 \}
+\end{schema}

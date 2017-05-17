@@ -1,0 +1,7 @@
+  section D9   
+-- generic horizontal definition
+  ∅[X] == { x : X | false } 
+-- ⊢? {1} = ∅ = {(1,2)}   
+-- ⊢? {1} = ∅ = {(1,2)} = {1}   
+ ⊢? {1} = ∅ = {2}   
+-- ⊢? {1} = ∅   

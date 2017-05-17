@@ -1,0 +1,34 @@
+─ section function_test  
+-- prefix
+─ function (ℙ _)  
+─ function (pre _)  
+─ function (l _ ere _)  
+─ function (l ,, sre _)  
+─ function (l _ es _ ere _)  
+─ function (l _ es1 _ es2 _ ere _)  
+─ function (l ,, ss ,, sre _)  
+─ function (l ,, ss1 ,, ss2 ,, sre _)  
+-- post
+─ function (_ post)  
+─ function (_ el _ er)  
+─ function (_ el _ es _ er)  
+─ function (_ el _ es1 _ es2 _ er)  
+─ function (_ el ,, ss ,, sr)  
+─ function (_ el ,, ss1 ,, ss2 ,, sr)  
+-- nofix
+─ function (l _ er)  
+─ function (l _ es _ er)  
+─ function (l _ es1 _ es2 _ er)  
+─ function (l ,, sr)  
+─ function (l ,, ss ,, sr)  
+─ function (l ,, ss1 ,, ss2 ,, sr)  
+-- infix
+─ function 91 leftassoc (_ i _)  
+─ function 8 rightassoc (_ el _ ere _)  
+─ function 10 leftassoc (_ el _ es _ ere _)  
+─ function  1 leftassoc (_ el _ es1 _ es2 _ ere _)  
+─ function 9 rightassoc (_ el ,, ss ,, sre _)  
+─ function 9 rightassoc (_ el ,, ss1 ,, ss2 ,, sre _)  
+─ function 9 rightassoc (_ + _)  
+
+╷N : {1} post      

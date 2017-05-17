@@ -1,0 +1,12 @@
+-- D.6-1
+-- ∅[X ] == { x : X | false }
+  section D6   
+-- generic horizontal definition
+  ∅[X] == { x : X | false } 
+-- this is not well-typed since the generic parameter of ∅ is not determined
+--  Empty == ∅ 
+-- this is not well-typed since the generic parameter of {} is not determined
+--  Empty == {} 
+  Empty == ∅[{1}] 
+-- ⊢? (∅  = {1})   
+ ⊢? {1} = ∅   
