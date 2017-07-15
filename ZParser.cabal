@@ -76,8 +76,8 @@ executable  LexerTest
     base >=4.7,
     ZParser == 0.1.0.0
 
-executable  ParseCircus 
-  main-is:             ParseCircus.hs 
+executable  ParseISOZ
+  main-is:             ParseISOZ.hs 
   other-modules:       Paths_ZParser
   hs-source-dirs:      src/Test,
                        dist/build/Language/ISOZ
